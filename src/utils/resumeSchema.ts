@@ -13,36 +13,34 @@ export const SECTION_TYPES = [
   'custom',
 ] as const;
 
-export const skillCategorySchema = z.object({
-  category: z.string().optional(),
-  skills: z.array(z.string()).default([]),
-});
-
-export const entrySchema = z.object({
-  id: z.string().min(1),
+// Shape the model is asked to return. Deliberately excludes rawText, templateId,
+// density and metadata: the app sets those itself, so the model never touches them.
+export const modelEntrySchema = z.object({
   title: z.string().optional(),
   subtitle: z.string().optional(),
   date: z.string().optional(),
   location: z.string().optional(),
   description: z.string().optional(),
   bullets: z.array(z.string()).default([]),
-  metadata: z.record(z.string(), z.string()).default({}),
-  rawText: z.string().optional(),
 });
 
-export const sectionSchema = z.object({
-  id: z.string().min(1),
-  title: z.string().min(1),
-  type: z.enum(SECTION_TYPES),
+export const modelSkillCategorySchema = z.object({
+  category: z.string().optional(),
+  skills: z.array(z.string()).default([]),
+});
+
+export const modelSectionSchema = z.object({
+  id: z.string().optional(),
+  title: z.string().optional(),
+  type: z.enum(SECTION_TYPES).catch('custom'),
   content: z.string().optional(),
-  entries: z.array(entrySchema).default([]),
-  skillCategories: z.array(skillCategorySchema).default([]),
-  rawText: z.string().optional(),
+  entries: z.array(modelEntrySchema).default([]),
+  skillCategories: z.array(modelSkillCategorySchema).default([]),
 });
 
 export const parsedResumeSchema = z.object({
   contact: z.object({
-    name: z.string().min(1),
+    name: z.string().default(''),
     email: z.string().optional(),
     phone: z.string().optional(),
     location: z.string().optional(),
@@ -50,32 +48,7 @@ export const parsedResumeSchema = z.object({
     github: z.string().optional(),
     website: z.string().optional(),
   }),
-  sections: z.array(sectionSchema).default([]),
-  rawText: z.string().optional().default(''),
-  templateId: z.enum([
-    'professional-classic',
-    'modern-clean',
-    'executive',
-    'creative',
-    'minimalist',
-  ]).default('professional-classic'),
-  density: z.enum(['auto', 'compact', 'spacious']).default('auto'),
+  sections: z.array(modelSectionSchema).default([]),
 });
 
 export type ParsedResume = z.infer<typeof parsedResumeSchema>;
-
-const zodJsonSchemaApi = z as typeof z & {
-  toJSONSchema?: (schema: unknown) => Record<string, unknown>;
-};
-
-export const PARSED_RESUME_JSON_SCHEMA = (() => {
-  try {
-    if (typeof zodJsonSchemaApi.toJSONSchema === 'function') {
-      return zodJsonSchemaApi.toJSONSchema(parsedResumeSchema);
-    }
-  } catch {
-    // Zod in this project does not expose a native JSON Schema helper.
-  }
-
-  return {};
-})();
