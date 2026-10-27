@@ -49,10 +49,9 @@ export default function App() {
     
     try {
       const parsed = await parseResumeWithGemini(inputText);
-setResumeData(parsed as any);
-    });
+      setResumeData(parsed);
       setActiveTab('editor');
-    } catch (err: any) {
+    } catch (err) {
       console.error('Gemini parsing failed, falling back to local parser:', err);
       const fallback = parseResume(inputText);
       setResumeData(fallback);
