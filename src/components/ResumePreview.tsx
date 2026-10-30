@@ -6,12 +6,16 @@ import { Download, ZoomIn, ZoomOut } from 'lucide-react';
 
 interface ResumePreviewProps {
   resume: ResumeData;
-  onDensityChange?: (density: 'auto' | 'compact' | 'spacious') => void;
+  onDensityChange?: (density: 'auto' | 'compact' | 'ultra-compact' | 'spacious') => void;
+  onTemplateChange?: (templateId: string) => void;
 }
 
-export const ResumePreview: React.FC<ResumePreviewProps> = ({ resume, onDensityChange }) => {
+export const ResumePreview: React.FC<ResumePreviewProps> = ({ 
+  resume, 
+  onDensityChange,
+  onTemplateChange 
+}) => {
   const [zoom, setZoom] = useState<number>(0.9);
-
   const sheetRef = useRef<HTMLDivElement | null>(null);
 
   const handlePrint = () => {
@@ -24,8 +28,19 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({ resume, onDensityC
       <div className="preview-toolbar no-print">
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Template:</span>
-          <span className="template-pill">Professional Classic</span>
+          
+          {/* REAL TEMPLATE SELECTOR */}
+          <select
+            value={resume.templateId || 'professional-classic'}
+            onChange={e => onTemplateChange && onTemplateChange(e.target.value)}
+            className="template-select text-xs font-medium border border-gray-300 rounded px-1.5 py-0.5 bg-blue-50 text-blue-700 cursor-pointer"
+            title="Choose a visual resume design"
+          >
+            <option value="professional-classic">Professional Classic</option>
+            <option value="modern-clean" disabled>Modern Clean (Coming Soon)</option>
+          </select>
 
+          {/* DENSITY SELECTOR WITH ULTRA-COMPACT */}
           {onDensityChange && (
             <select
               value={resume.density || 'auto'}
@@ -33,7 +48,8 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({ resume, onDensityC
               className="density-select text-xs font-medium border border-gray-300 rounded px-1.5 py-0.5 bg-white text-gray-700 ml-2 cursor-pointer"
               title="Adjust font size and spacing (does not compress text)"
             >
-              <option value="compact">Compact (9pt)</option>
+              <option value="ultra-compact">Ultra Compact (8pt)</option>
+              <option value="compact">Compact (8.5pt)</option>
               <option value="auto">Standard (9.5pt)</option>
               <option value="spacious">Spacious (10pt)</option>
             </select>
