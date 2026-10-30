@@ -51,8 +51,8 @@ export interface ResumeData {
   contact: ContactInfo;
   sections: ResumeSection[];
   rawText: string;
-  templateId: 'professional-classic';
-  density?: 'auto' | 'compact' | 'spacious';
+  templateId: string; // Expanded to string to prevent template type mismatches
+  density?: 'auto' | 'compact' | 'ultra-compact' | 'spacious'; // Added ultra-compact option
 }
 
 export interface ValidationItem {
