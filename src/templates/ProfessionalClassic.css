@@ -21,9 +21,17 @@
 
 /* Density Variants */
 .resume-sheet.density-compact {
-  padding: 10mm 14mm;
-  line-height: 1.38;
-  font-size: 9pt;
+  padding: 8mm 10mm;
+  line-height: 1.3;
+  font-size: 8.5pt;
+}
+
+.resume-sheet.density-compact .resume-header {
+  margin-bottom: 5px;
+}
+
+.resume-sheet.density-compact .resume-section-title {
+  margin-bottom: 2px;
 }
 
 .resume-sheet.density-spacious {
@@ -35,7 +43,7 @@
 /* Candidate Header */
 .resume-header {
   text-align: center;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
   padding-bottom: 5px;
   border-bottom: 1.2px solid #111827;
 }
@@ -50,41 +58,12 @@
   line-height: 1.15;
 }
 
-.resume-contact-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  font-size: 9pt;
-  color: #374151;
-}
-
-.resume-contact-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.resume-contact-item a {
-  color: #1d4ed8;
-  text-decoration: none;
-}
-
-.resume-contact-item a:hover {
-  text-decoration: underline;
-}
-
-.resume-contact-sep {
-  color: #9ca3af;
-  font-size: 7.5pt;
-  user-select: none;
-}
-
 /* Section Headings */
 .resume-section {
   margin-top: 6px;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
+  page-break-inside: auto;
+  break-inside: auto;
 }
 
 .resume-section-title {
@@ -95,7 +74,7 @@
   color: #111827;
   border-bottom: 1.2px solid #111827;
   padding-bottom: 1px;
-  margin: 0 0 4px 0;
+  margin: 0 0 3px 0;
   page-break-after: avoid;
   break-after: avoid;
 }
@@ -111,7 +90,7 @@
 
 /* Entries */
 .resume-entry {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   page-break-inside: avoid;
   break-inside: avoid;
 }
@@ -177,7 +156,7 @@
   font-size: 9.5pt;
   color: #1f2937;
   line-height: 1.42;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   text-align: left;
 }
 
@@ -201,7 +180,7 @@
 @media print {
   @page {
     size: A4 portrait;
-    margin: 10mm 12mm;
+    margin: 8mm 10mm;
   }
 
   body {
@@ -224,46 +203,40 @@
     padding: 0 !important;
     width: 100% !important;
     min-height: auto !important;
-    /* No font-size or line-height override — preserve screen typography exactly */
   }
 
-  /* Tighten section spacing in print only (not font size, not line-height) */
   .resume-section {
     page-break-inside: auto;
     break-inside: auto;
     margin-top: 4px;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
   }
 
   .resume-section-title {
     page-break-after: avoid;
     break-after: avoid;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
 
   .resume-entry {
-    page-break-inside: auto;
-    break-inside: auto;
+    page-break-inside: avoid;
+    break-inside: avoid;
     margin-bottom: 3px;
   }
 
-  /* Tighten bullet spacing in print */
   .resume-bullet-item {
     margin-bottom: 1px;
   }
 
-  /* Tighten summary/content paragraph spacing */
   .resume-section-content {
     margin-bottom: 2px;
   }
 
-  /* Tighten resume header bottom gap */
   .resume-header {
     margin-bottom: 4px;
     padding-bottom: 3px;
   }
 }
-
 
 /* Print reliability: preserve selectable vector text and avoid forced one-page compression. */
 @media print {
@@ -279,7 +252,6 @@
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
   .resume-section-title { break-after: avoid-page; page-break-after: avoid; }
-  /* Keep role metadata together, but allow long entries to continue across pages. */
   .resume-entry-header,
   .resume-entry-subline { break-inside: avoid; page-break-inside: avoid; }
   .resume-entry { break-inside: auto; page-break-inside: auto; }
@@ -292,7 +264,6 @@
   .resume-skill-cat { orphans: 2; widows: 2; }
   a { color: inherit !important; text-decoration: none; }
 }
-
 
 .resume-empty-state {
   box-sizing: border-box; width: 210mm; min-height: 297mm; margin: 0 auto; padding: 48mm 24mm;
