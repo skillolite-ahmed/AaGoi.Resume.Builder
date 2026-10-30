@@ -25,13 +25,38 @@
   line-height: 1.3;
   font-size: 8.5pt;
 }
-
 .resume-sheet.density-compact .resume-header {
   margin-bottom: 5px;
 }
-
 .resume-sheet.density-compact .resume-section-title {
   margin-bottom: 2px;
+}
+
+/* NEW: Ultra Compact for 7+ Year Senior Resumes */
+.resume-sheet.density-ultra-compact {
+  padding: 8mm 10mm;
+  line-height: 1.25;
+  font-size: 8pt;
+}
+.resume-sheet.density-ultra-compact .resume-header {
+  margin-bottom: 4px;
+  padding-bottom: 3px;
+}
+.resume-sheet.density-ultra-compact .resume-section {
+  margin-top: 4px;
+  margin-bottom: 1px;
+}
+.resume-sheet.density-ultra-compact .resume-entry {
+  margin-bottom: 2px;
+}
+.resume-sheet.density-ultra-compact .resume-bullet-item {
+  margin-bottom: 1px;
+}
+.resume-sheet.density-ultra-compact .resume-skills-block {
+  line-height: 1.3;
+}
+.resume-sheet.density-ultra-compact .resume-skill-cat {
+  margin-bottom: 1px;
 }
 
 .resume-sheet.density-spacious {
@@ -91,8 +116,9 @@
 /* Entries */
 .resume-entry {
   margin-bottom: 3px;
-  page-break-inside: avoid;
-  break-inside: avoid;
+  /* CRITICAL FIX: Allow jobs to break across pages so Page 1 fills completely */
+  page-break-inside: auto;
+  break-inside: auto; 
 }
 
 .resume-entry-header {
@@ -100,6 +126,11 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 10px;
+  /* Keep headers attached to the job content */
+  page-break-after: avoid; 
+  break-after: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .resume-entry-title {
@@ -125,6 +156,11 @@
   color: #374151;
   font-style: italic;
   margin-top: 1px;
+  /* Keep sublines attached to the job content */
+  page-break-after: avoid; 
+  break-after: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .resume-entry-subtitle {
@@ -219,8 +255,8 @@
   }
 
   .resume-entry {
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: auto;
+    break-inside: auto;
     margin-bottom: 3px;
   }
 
