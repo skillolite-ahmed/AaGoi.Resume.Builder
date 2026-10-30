@@ -85,7 +85,7 @@ export const ProfessionalClassic: React.FC<ProfessionalClassicProps> = ({ resume
                     <span>{item.label}</span>
                   )}
                 </span>
-                {idx < contactItems.length - 1 && <span className="resume-contact-sep">•</span>}
+                {idx < contactItems.length - 1 && <span className="resume-contact-sep">|</span>}
               </React.Fragment>
             ))}
           </div>
@@ -108,7 +108,7 @@ export const ProfessionalClassic: React.FC<ProfessionalClassicProps> = ({ resume
               {section.skillCategories.map((cat, idx) => (
                 <div key={idx} className="resume-skill-cat">
                   {cat.category && (
-                    <strong className="resume-skill-cat-title">{cat.category}: </strong>
+                    <strong className="resume-skill-cat-title">• {cat.category}: </strong>
                   )}
                   <span>{cat.skills.join(', ')}</span>
                 </div>
@@ -119,41 +119,57 @@ export const ProfessionalClassic: React.FC<ProfessionalClassicProps> = ({ resume
           {/* Structured Entries (Experience, Education, Projects, Certifications, Awards, etc.) */}
           {section.entries && section.entries.length > 0 && (
             <div className="resume-entries-block">
-              {section.entries.map(entry => (
-                <article key={entry.id} className="resume-entry">
-                  {/* Title and Date row */}
-                  {(entry.title || entry.date) && (
-                    <div className="resume-entry-header">
-                      {entry.title && <div className="resume-entry-title">{entry.title}</div>}
-                      {entry.date && <div className="resume-entry-date">{entry.date}</div>}
-                    </div>
-                  )}
+              {section.entries.map(entry => {
+                const compactSingleLine =
+                  section.type === 'education' ||
+                  (!entry.description && (!entry.bullets || entry.bullets.length === 0));
 
-                  {/* Subtitle (Company / School) and Location row */}
-                  {(entry.subtitle || entry.location) && (
-                    <div className="resume-entry-subline">
-                      {entry.subtitle && <span className="resume-entry-subtitle">{entry.subtitle}</span>}
-                      {entry.location && <span className="resume-entry-location">{entry.location}</span>}
-                    </div>
-                  )}
+                return (
+                  <article key={entry.id} className="resume-entry">
+                    {compactSingleLine ? (
+                      <div className="resume-entry-header resume-entry-header-compact">
+                        <div className="resume-entry-line">
+                          {[entry.title, entry.subtitle, entry.date].filter(Boolean).join(' | ')}
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        {/* Title and Date row */}
+                        {(entry.title || entry.date) && (
+                          <div className="resume-entry-header">
+                            {entry.title && <div className="resume-entry-title">{entry.title}</div>}
+                            {entry.date && <div className="resume-entry-date">{entry.date}</div>}
+                          </div>
+                        )}
 
-                  {/* Entry Description */}
-                  {entry.description && (
-                    <p className="resume-entry-desc">{entry.description}</p>
-                  )}
+                        {/* Subtitle (Company / School) and Location row */}
+                        {(entry.subtitle || entry.location) && (
+                          <div className="resume-entry-subline">
+                            {entry.subtitle && <span className="resume-entry-subtitle">{entry.subtitle}</span>}
+                            {entry.location && <span className="resume-entry-location">{entry.location}</span>}
+                          </div>
+                        )}
+                      </>
+                    )}
 
-                  {/* Bullet points */}
-                  {entry.bullets && entry.bullets.length > 0 && (
-                    <ul className="resume-bullets-list">
-                      {entry.bullets.map((bullet, bIdx) => (
-                        <li key={bIdx} className="resume-bullet-item">
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              ))}
+                    {/* Entry Description */}
+                    {entry.description && (
+                      <p className="resume-entry-desc">{entry.description}</p>
+                    )}
+
+                    {/* Bullet points */}
+                    {entry.bullets && entry.bullets.length > 0 && (
+                      <ul className="resume-bullets-list">
+                        {entry.bullets.map((bullet, bIdx) => (
+                          <li key={bIdx} className="resume-bullet-item">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </article>
+                );
+              })}
             </div>
           )}
         </section>
