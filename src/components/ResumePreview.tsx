@@ -33,10 +33,8 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({
             value={resume.templateId || 'professional-classic'}
             onChange={e => onTemplateChange && onTemplateChange(e.target.value)}
             className="template-select text-xs font-medium border border-gray-300 rounded px-1.5 py-0.5 bg-blue-50 text-blue-700 cursor-pointer"
-            title="Choose a visual resume design"
           >
             <option value="professional-classic">Professional Classic</option>
-            <option value="modern-clean" disabled>Modern Clean (Coming Soon)</option>
           </select>
 
           {/* DENSITY SELECTOR WITH ULTRA-COMPACT */}
@@ -44,10 +42,9 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({
             <select
               value={resume.density || 'auto'}
               onChange={e => onDensityChange(e.target.value as any)}
-              className="density-select text-xs font-medium border border-gray-300 rounded px-1.5 py-0.5 bg-white text-gray-700 ml-2 cursor-pointer"
-              title="Adjust font size and spacing"
+              className="density-select text-xs font-medium border border-gray-300 rounded px-1.5 py-0.5 bg-white text-gray-700 ml-2 cursor-pointer font-bold text-blue-600"
             >
-              <option value="ultra-compact">Ultra Compact (8pt)</option>
+              <option value="ultra-compact">⚡ Ultra Compact (8pt)</option>
               <option value="compact">Compact (8.5pt)</option>
               <option value="auto">Standard (9.5pt)</option>
               <option value="spacious">Spacious (10pt)</option>
@@ -90,7 +87,7 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({
           <button
             type="button"
             onClick={handlePrint}
-            title="Opens browser Print dialog — choose 'Save as PDF'"
+            title="Save as PDF"
             className="btn-primary btn-sm flex items-center gap-1.5"
           >
             <Download size={14} />
