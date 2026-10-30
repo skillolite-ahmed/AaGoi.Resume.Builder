@@ -29,7 +29,6 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Template:</span>
           
-          {/* REAL TEMPLATE SELECTOR */}
           <select
             value={resume.templateId || 'professional-classic'}
             onChange={e => onTemplateChange && onTemplateChange(e.target.value)}
@@ -46,7 +45,7 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({
               value={resume.density || 'auto'}
               onChange={e => onDensityChange(e.target.value as any)}
               className="density-select text-xs font-medium border border-gray-300 rounded px-1.5 py-0.5 bg-white text-gray-700 ml-2 cursor-pointer"
-              title="Adjust font size and spacing (does not compress text)"
+              title="Adjust font size and spacing"
             >
               <option value="ultra-compact">Ultra Compact (8pt)</option>
               <option value="compact">Compact (8.5pt)</option>
@@ -91,7 +90,7 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({
           <button
             type="button"
             onClick={handlePrint}
-            title="Opens browser Print dialog — choose 'Save as PDF' to download a vector PDF with selectable text and correct word spacing"
+            title="Opens browser Print dialog — choose 'Save as PDF'"
             className="btn-primary btn-sm flex items-center gap-1.5"
           >
             <Download size={14} />
