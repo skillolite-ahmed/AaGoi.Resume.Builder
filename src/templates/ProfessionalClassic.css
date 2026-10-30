@@ -5,8 +5,8 @@
   background-color: #ffffff;
   color: #111827;
   font-family: Inter, Arial, sans-serif;
-  line-height: 1.42;
-  font-size: 9.5pt;
+  line-height: 1.25;
+  font-size: 9pt;
   padding: 12mm 16mm;
   width: 210mm;
   min-height: 297mm;
@@ -32,10 +32,10 @@
   margin-bottom: 2px;
 }
 
-/* NEW: Ultra Compact for 7+ Year Senior Resumes */
+/* Ultra Compact for dense executive / senior CVs */
 .resume-sheet.density-ultra-compact {
   padding: 8mm 10mm;
-  line-height: 1.25;
+  line-height: 1.15;
   font-size: 8pt;
 }
 .resume-sheet.density-ultra-compact .resume-header {
@@ -44,13 +44,16 @@
 }
 .resume-sheet.density-ultra-compact .resume-section {
   margin-top: 4px;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
+}
+.resume-sheet.density-ultra-compact .resume-section-title {
+  margin-bottom: 0;
 }
 .resume-sheet.density-ultra-compact .resume-entry {
   margin-bottom: 2px;
 }
 .resume-sheet.density-ultra-compact .resume-bullet-item {
-  margin-bottom: 1px;
+  margin-bottom: 0;
 }
 .resume-sheet.density-ultra-compact .resume-skills-block {
   line-height: 1.3;
@@ -81,6 +84,39 @@
   margin: 0 0 3px 0;
   text-transform: uppercase;
   line-height: 1.15;
+}
+
+.resume-contact-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  font-size: 9pt;
+  color: #374151;
+  line-height: 1.2;
+}
+
+.resume-contact-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.resume-contact-item a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.resume-contact-item a:hover {
+  text-decoration: underline;
+}
+
+.resume-contact-sep {
+  color: #9ca3af;
+  font-size: 8pt;
+  line-height: 1;
+  padding: 0 3px;
+  user-select: none;
 }
 
 /* Section Headings */
@@ -116,9 +152,8 @@
 /* Entries */
 .resume-entry {
   margin-bottom: 3px;
-  /* CRITICAL FIX: Allow jobs to break across pages so Page 1 fills completely */
-  page-break-inside: auto;
-  break-inside: auto; 
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .resume-entry-header {
@@ -126,11 +161,24 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 10px;
-  /* Keep headers attached to the job content */
-  page-break-after: avoid; 
+  page-break-after: avoid;
   break-after: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
+}
+
+.resume-entry-header-compact {
+  margin: 0;
+}
+
+.resume-entry-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 9pt;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
 }
 
 .resume-entry-title {
@@ -156,8 +204,7 @@
   color: #374151;
   font-style: italic;
   margin-top: 1px;
-  /* Keep sublines attached to the job content */
-  page-break-after: avoid; 
+  page-break-after: avoid;
   break-after: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
@@ -192,7 +239,7 @@
   font-size: 9.5pt;
   color: #1f2937;
   line-height: 1.42;
-  margin-bottom: 1px;
+  margin-bottom: 0;
   text-align: left;
 }
 
@@ -216,7 +263,7 @@
 @media print {
   @page {
     size: A4 portrait;
-    margin: 8mm 10mm;
+    margin: 6mm 8mm;
   }
 
   body {
@@ -251,17 +298,17 @@
   .resume-section-title {
     page-break-after: avoid;
     break-after: avoid;
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
 
   .resume-entry {
-    page-break-inside: auto;
-    break-inside: auto;
+    page-break-inside: avoid;
+    break-inside: avoid;
     margin-bottom: 3px;
   }
 
   .resume-bullet-item {
-    margin-bottom: 1px;
+    margin-bottom: 0;
   }
 
   .resume-section-content {
