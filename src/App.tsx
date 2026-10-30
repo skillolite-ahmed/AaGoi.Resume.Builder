@@ -261,6 +261,7 @@ export default function App() {
           <ResumePreview
             resume={resumeData}
             onDensityChange={d => setResumeData(prev => ({ ...prev, density: d }))}
+            onTemplateChange={t => setResumeData(prev => ({ ...prev, templateId: t }))}
           />
         </div>
       </main>
