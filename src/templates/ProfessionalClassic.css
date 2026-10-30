@@ -34,32 +34,58 @@
 
 /* Ultra Compact for dense executive / senior CVs */
 .resume-sheet.density-ultra-compact {
-  padding: 8mm 10mm;
+  padding: 6mm 8mm;
   line-height: 1.15;
-  font-size: 8pt;
+  font-size: 7.5pt;
 }
 .resume-sheet.density-ultra-compact .resume-header {
-  margin-bottom: 4px;
-  padding-bottom: 3px;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+}
+.resume-sheet.density-ultra-compact .resume-candidate-name {
+  font-size: 14pt;
+  margin-bottom: 1px;
 }
 .resume-sheet.density-ultra-compact .resume-section {
-  margin-top: 4px;
-  margin-bottom: 2px;
+  margin-top: 3px;
+  margin-bottom: 1px;
 }
 .resume-sheet.density-ultra-compact .resume-section-title {
-  margin-bottom: 0;
+  font-size: 8.5pt;
+  margin-bottom: 1px;
+  padding-bottom: 0;
+}
+.resume-sheet.density-ultra-compact .resume-section-content {
+  font-size: 8pt;
+  margin-bottom: 2px;
+  line-height: 1.2;
 }
 .resume-sheet.density-ultra-compact .resume-entry {
   margin-bottom: 2px;
+}
+.resume-sheet.density-ultra-compact .resume-entry-title,
+.resume-sheet.density-ultra-compact .resume-entry-date,
+.resume-sheet.density-ultra-compact .resume-entry-subline,
+.resume-sheet.density-ultra-compact .resume-entry-subtitle,
+.resume-sheet.density-ultra-compact .resume-entry-location,
+.resume-sheet.density-ultra-compact .resume-entry-desc,
+.resume-sheet.density-ultra-compact .resume-bullet-item,
+.resume-sheet.density-ultra-compact .resume-skills-block,
+.resume-sheet.density-ultra-compact .resume-entry-line {
+  font-size: 7.5pt;
+  line-height: 1.15;
+}
+.resume-sheet.density-ultra-compact .resume-bullets-list {
+  margin: 1px 0 0 0;
 }
 .resume-sheet.density-ultra-compact .resume-bullet-item {
   margin-bottom: 0;
 }
 .resume-sheet.density-ultra-compact .resume-skills-block {
-  line-height: 1.3;
+  line-height: 1.2;
 }
 .resume-sheet.density-ultra-compact .resume-skill-cat {
-  margin-bottom: 1px;
+  margin-bottom: 0;
 }
 
 .resume-sheet.density-spacious {
@@ -302,8 +328,8 @@
   }
 
   .resume-entry {
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: auto;
+    break-inside: auto;
     margin-bottom: 3px;
   }
 
