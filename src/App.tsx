@@ -260,8 +260,8 @@ export default function App() {
         <div className="app-right-panel">
           <ResumePreview
             resume={resumeData}
-            onDensityChange={d => setResumeData(prev => ({ ...prev, density: d }))}
-            onTemplateChange={t => setResumeData(prev => ({ ...prev, templateId: t }))}
+            onDensityChange={d => setResumeData(prev => ({ ...prev, density: d as any }))}
+            onTemplateChange={t => setResumeData(prev => ({ ...prev, templateId: t as any }))}
           />
         </div>
       </main>
